@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import logo from './assets/logo-novaskill.png';
 import { motion, AnimatePresence } from 'motion/react';
 import {
     Rocket,
@@ -45,11 +46,8 @@ const Navbar = () => {
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-                <div className="font-bold text-xl tracking-tight flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <Rocket className="w-5 h-5 text-white" />
-                    </div>
-                    NovaSkill Tech Campus
+                <div className="flex items-center gap-2">
+                    <img src={logo} alt="NovaSkill Logo" className="h-10 w-auto" />
                 </div>
 
                 <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
@@ -92,11 +90,16 @@ const Navbar = () => {
 
 const Hero = () => (
     <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/20 rounded-full blur-[120px] opacity-50 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[100px] opacity-50 pointer-events-none translate-x-20" />
-
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+            {/* Centered Logo with Smooth Fade-in */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="flex justify-center mb-12"
+            >
+                <img src={logo} alt="NovaSkill Logo" className="h-32 md:h-48 w-auto drop-shadow-[0_0_40px_rgba(255,255,255,0.2)]" />
+            </motion.div>
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -492,9 +495,8 @@ const Admission = () => (
 const Footer = () => (
     <footer className="border-t border-white/10 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2 font-bold text-xl">
-                <Rocket className="w-6 h-6 text-blue-500" />
-                NovaSkill Tech Campus
+            <div className="flex items-center gap-2">
+                <img src={logo} alt="NovaSkill Logo" className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity" />
             </div>
             <div className="text-slate-400 text-sm flex flex-col md:flex-row items-center gap-4 md:gap-8">
                 <span>📍 Berrechid, Maroc</span>
@@ -510,7 +512,7 @@ const Footer = () => (
 
 export default function App() {
     return (
-        <div className="min-h-screen bg-[#0B0F19] text-white selection:bg-blue-500/30">
+        <div className="min-h-screen text-white selection:bg-blue-500/30">
             <Navbar />
             <main>
                 <Hero />
